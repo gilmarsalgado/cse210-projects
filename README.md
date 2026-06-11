@@ -1,5 +1,5 @@
 # cse210-student-template
-This is Gilmar Salgado's repository.
+Hello! This is Gilmar Salgado's repository.
 
 This repository contains the starter code for many different projects. They are arranged as follows:
 
