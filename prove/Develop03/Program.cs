@@ -12,8 +12,8 @@ class Program
     static void Main(string[] args)
     {
         // Creating Instances
-        Reference reference1 = new Reference("2 Nefi", 25,26);
-        Scripture scripture1 = new Scripture(reference1, "And we talk of Christ, we rejoice in Christ, we preach of Christ, we prophesy of Christ, and we write according to our prophecies, that our children may know to what source they may look for a remission of their sins.");
+        Reference reference1 = new Reference("D&C", 6,36);
+        Scripture scripture1 = new Scripture(reference1, "Therefore, fear not, little flock; do good; let earth and hell combine against you, for if ye are built upon my rock, they cannot prevail.");
         // Cleaning Console
         Console.Clear();
         System.Console.WriteLine("     Welcome to our Scripture Memorizer     ");
