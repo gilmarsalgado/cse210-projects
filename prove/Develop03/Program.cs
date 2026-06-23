@@ -1,5 +1,4 @@
 using System;
-using System.Runtime.InteropServices;
 using System.Collections.Generic;
 
 //What I did to exceed requirements:
@@ -15,59 +14,92 @@ class Program
 {
     static void Main(string[] args)
     {
-        List<Scripture> scriptureLibrary = new List<Scripture>(); //created library to hold scriptures
-
-        // Creating Instances
-        scriptureLibrary.Add(new Scripture(new Reference("D&C", 6, 36), "Therefore, fear not, little flock; do good; let earth and hell combine against you, for if ye are built upon my rock, they cannot prevail."));
-        scriptureLibrary.Add(new Scripture(new Reference("2 Nefi", 2, 25), "Adam fell that men might be; and men are, that they might have joy."));
-        scriptureLibrary.Add(new Scripture(new Reference("Mosiah", 3, 19), "For the natural man is an enemy to God, and has been from the fall of Adam, and will be, forever and ever, unless he yields to the enticings of the Holy Spirit, and putteth off the natural man and becometh a saint through the atonement of Christ the Lord, and becometh as a child, submissive, meek, humble, patient, full of love, willing to submit to all things which the Lord seeth fit to inflict upon him, even as a child doth submit to his father."));
-
         bool programRunning = true;
+        Random random = new Random();
 
         while (programRunning)
         {
-            //Picking a random scripture from the library 
-            Random random = new Random();
-            int randomIndex = random.Next(scriptureLibrary.Count);
-            
-            // Grab the randomly selected scripture
-            Scripture currentScripture = scriptureLibrary[randomIndex];
-            
-            // Cleaning Console
-            Console.Clear();
-            System.Console.WriteLine("     Welcome to our Scripture Memorizer     ");
-            System.Console.WriteLine("--------------------------------------------------------------");
-            System.Console.WriteLine(currentScripture.GetDisplayText());
-            System.Console.WriteLine("--------------------------------------------------------------");
-            System.Console.WriteLine("Press enter to continue or type 'quit' to finish: ");
-            System.Console.WriteLine("Type 'Return' to get a new scripture.");
+            // 1. Pick a random number ONCE at the start of a new scripture session
+            int randomIndex = random.Next(3);
+            bool workingOnSameScripture = true;
 
-            bool finish = true;
-            string userResponse;
-            
-            while (finish == true)
+            while (workingOnSameScripture)
             {
-                userResponse = Console.ReadLine();
+                // 2. Rebuild the library inside this loop so the words are fresh and unhidden
+                List<Scripture> scriptureLibrary = new List<Scripture>();
+
+                scriptureLibrary.Add(new Scripture(new Reference("D&C", 6, 36), "Therefore, fear not, little flock; do good; let earth and hell combine against you, for if ye are built upon my rock, they cannot prevail."));
+                scriptureLibrary.Add(new Scripture(new Reference("2 Nefi", 2, 25), "Adam fell that men might be; and men are, that they might have joy."));
+                scriptureLibrary.Add(new Scripture(new Reference("Mosiah", 3, 19), "For the natural man is an enemy to God, and has been from the fall of Adam, and will be, forever and ever, unless he yields to the enticings of the Holy Spirit, and putteth off the natural man and becometh a saint through the atonement of Christ the Lord, and becometh as a child, submissive, meek, humble, patient, full of love, willing to submit to all things which the Lord seeth fit to inflict upon him, even as a child doth submit to his father."));
+
+                // 3. Grab the scripture using the SAME index
+                Scripture currentScripture = scriptureLibrary[randomIndex];
+                
                 Console.Clear();
+                Console.WriteLine("     Welcome to our Scripture Memorizer     ");
+                Console.WriteLine("--------------------------------------------------------------");
+                Console.WriteLine(currentScripture.GetDisplayText());
+                Console.WriteLine("--------------------------------------------------------------");
+                Console.WriteLine("Press ENTER to continue or type 'QUIT' to finish.");
+                Console.WriteLine("Type 'RETURN' to show this scripture whole again.");
+
+                bool scriptureSession = true;
+                string userResponse;
                 
-                // Hide words and print the updated scripture
-                currentScripture.HideRandomWords();
-                System.Console.WriteLine(currentScripture.GetDisplayText());
-                System.Console.WriteLine("Press ENTER to continue or type 'QUIT' to finish: ");
-                System.Console.WriteLine("Type 'Return' to get a new scripture.");
-                
-                // Convert input to lowercase safely
-                userResponse = userResponse.ToLower();
-                
-                // Check if the user wants to quit, return, or if the scripture is fully hidden
-                if (userResponse == "quit" || currentScripture.IsCompletelyHidden() == false)
+                while (scriptureSession)
                 {
-                    finish = false;
-                    programRunning = false; // Ends the entire program
-                } 
-                else if (userResponse == "return")
-                {
-                    finish = false; // Breaks the inner loop, letting the outer loop pick a new scripture
+                    userResponse = Console.ReadLine()?.ToLower();
+                    
+                    if (userResponse == "quit")
+                    {
+                        scriptureSession = false;
+                        workingOnSameScripture = false;
+                        programRunning = false; 
+                    } 
+                    else if (userResponse == "return")
+                    {
+                        // Breaks this inner loop, but workingOnSameScripture remains true!
+                        // This loops back, recreates the library, and pulls the exact same scripture, unhidden.
+                        scriptureSession = false; 
+                    }
+                    else
+                    {
+                        // User pressed ENTER to hide words
+                        Console.Clear();
+                        currentScripture.HideRandomWords();
+                        Console.WriteLine("     Welcome to our Scripture Memorizer     ");
+                        Console.WriteLine("--------------------------------------------------------------");
+                        Console.WriteLine(currentScripture.GetDisplayText());
+                        Console.WriteLine("--------------------------------------------------------------");
+                        
+                        if (currentScripture.IsCompletelyHidden())
+                        {
+                            Console.WriteLine("\nAll words are hidden! Press ENTER for a NEW scripture, or type 'RETURN' to show this one whole again.");
+                            userResponse = Console.ReadLine()?.ToLower();
+                            
+                            if (userResponse == "quit") 
+                            {
+                                scriptureSession = false;
+                                workingOnSameScripture = false;
+                                programRunning = false;
+                            }
+                            else if (userResponse == "return") 
+                            {
+                                scriptureSession = false; // Restarts the same scripture
+                            } 
+                            else 
+                            {
+                                // User pressed enter to move on to a NEW scripture
+                                scriptureSession = false;
+                                workingOnSameScripture = false; // Breaks out to pick a new random index
+                            }
+                        }
+                        else 
+                        {
+                            Console.WriteLine("Press ENTER to continue or type 'QUIT' to finish.");
+                            Console.WriteLine("Type 'RETURN' to show this scripture whole again.");
+                        }
+                    }
                 }
             }
         }
