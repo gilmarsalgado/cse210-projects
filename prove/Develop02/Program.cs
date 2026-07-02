@@ -1,13 +1,13 @@
 using System;
 
 
-Extra items for exceeding requirements:
-- Asking about user's mood
-- Verifying if exists something in List entries when the user type option 2 for Display
-- Error message in case the user doesn't type a option between 1-5
-- Error message if the user hasn't written any in the journal
-- A condition for verify if the file does exist when calling LoadFromFile
-- Message informing the user that the file has been uploaded successfully
+//Extra items for exceeding requirements:
+//- Asking about user's mood
+//- Verifying if exists something in List entries when the user type option 2 for Display
+//- Error message in case the user doesn't type a option between 1-5
+//- Error message if the user hasn't written any in the journal
+//- A condition for verify if the file does exist when calling LoadFromFile
+//- Message informing the user that the file has been uploaded successfully
 
 
 
