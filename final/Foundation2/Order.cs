@@ -18,7 +18,7 @@ class Order{
         foreach(var item in _products){
             total += item.CostCalculator();
         }
-        return total+_customer.ISCustomerInUSA();
+        return total + _customer.GetShippingCost();
     }
 
     public void DisplayTotalPrice(){
@@ -28,21 +28,20 @@ class Order{
     public void DisplayPacking(){
         Console.WriteLine("Packing Label");
         Console.WriteLine("=============");
+
         for (int i = 0; i < _products.Count; i++)
         {
             Console.WriteLine($"{_products[i].GetId()} - {_products[i].GetName()}");
         }
+
         Console.WriteLine("");
     }
+
     public void DisplayShipping(){
         Console.WriteLine("Shipping Label");
         Console.WriteLine("=============");
         Console.WriteLine(_customer.GetName());
-        Console.WriteLine(_customer.GetAddress().GetFullAddress());
+        Console.WriteLine(_customer.GetFullAddress());
         Console.WriteLine("-------------------------------------------------------------");
     }
-
-
-
-
 }

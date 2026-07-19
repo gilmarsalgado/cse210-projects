@@ -8,8 +8,8 @@ class Customer{
     public Customer(string name, Address address){
         _name = name;
         _address = address;
-
     }
+
     public string GetName(){
         return _name;
     }
@@ -18,7 +18,8 @@ class Customer{
         return _address;
     }
 
-    public double ISCustomerInUSA(){
+
+    public double GetShippingCost(){     // changed to reflect feedback from milestone submission
         if(_address.IsUsaAddress() == true){
             return 5;
         } else {
@@ -26,4 +27,7 @@ class Customer{
         }
     }
 
+    public string GetFullAddress(){
+        return _address.GetFullAddress();
+    }
 }
