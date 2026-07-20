@@ -1,10 +1,10 @@
 using System;
 
 class Address{
-    protected string _street;
-    protected string _city;
-    protected string _state;
-    protected string _country;
+    private string _street;
+    private string _city;
+    private string _state;
+    private string _country;
 
     public Address(string street, string city, string state, string country) {
         _street = street;
@@ -16,6 +16,7 @@ class Address{
     public Address(){
 
     }
+
     public bool IsUsaAddress(){
         if(_country == "USA"){
             return true;
@@ -23,6 +24,7 @@ class Address{
             return false;
         }
     }
+
     public string GetFullAddress(){
         return $"{_street} \n{_city}, {_state}, {_country}";
     }

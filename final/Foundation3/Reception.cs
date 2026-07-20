@@ -1,24 +1,19 @@
 using System;
 
 class Reception : Event{
-    protected string _email;
+    private string _email;
 
     public Reception(string title, string description, string date,string time,Address address,string email):base(title,description,date,time,address){
         _email = email;
     }
     
-    public override void GetFullDetails(){
-        Console.WriteLine("");
-        Console.WriteLine("Type: Reception");
-        GetStandardDetails();
-        Console.WriteLine($"Email: {_email}");
+    public override string GetFullDetails(){
+        return $"\nType: Reception\n{GetStandardDetails()}\nEmail: {_email}";
     }
 
-    public override void GetShortDescription()
+    public override string GetShortDescription()
     {
-        Console.WriteLine("");
-        Console.WriteLine($"Reception - {_title} - {_date}");
-        Console.WriteLine("============================================");
+        return $"\nReception - {GetTitle()} - {GetDate()}\n============================================";
 
     }
 

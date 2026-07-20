@@ -1,27 +1,21 @@
 using System;
 
 class Lecture : Event{
-    protected string _speaker;
-    protected int _capacity;
+    private string _speaker;
+    private int _capacity;
 
     public Lecture(string title, string description, string date,string time,Address address,string speaker,int capacity):base(title,description,date,time,address){
         _speaker = speaker;
         _capacity = capacity;
     }
     
-    public override void GetFullDetails(){
-        Console.WriteLine("");
-        Console.WriteLine("Type: Lecture");
-        GetStandardDetails();
-        Console.WriteLine($"Speaker: {_speaker}");
-        Console.WriteLine($"Capacity {_capacity}");
+    public override string GetFullDetails(){
+        return $"\nType: Lecture\n{GetStandardDetails()}\nSpeaker: {_speaker}\nCapacity {_capacity}";
     }
 
-    public override void GetShortDescription()
+    public override string GetShortDescription()
     {
-        Console.WriteLine("");
-        Console.WriteLine($"Lecture - {_title} - {_date}");
-        Console.WriteLine("============================================");
+        return $"\nLecture - {GetTitle()} - {GetDate()}\n============================================";
     }
 
 }

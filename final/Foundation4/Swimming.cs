@@ -1,7 +1,7 @@
 using System;
 
 class Swimming : Activity{
-    protected double _laps;
+    private double _laps;
 
     public Swimming(string date,double minutes,double laps) : base(date,minutes){
             _laps = laps;

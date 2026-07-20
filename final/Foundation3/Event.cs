@@ -1,11 +1,11 @@
 using System;
 
 abstract class Event{
-    protected string _title;
-    protected string _description;
-    protected string _date;
-    protected string _time;
-    protected Address _address;
+    private string _title;
+    private string _description;
+    private string _date;
+    private string _time;
+    private Address _address;
 
     public Event(string title, string description, string date,string time,Address address){
         _title = title;
@@ -15,15 +15,21 @@ abstract class Event{
         _address = address;
     }
 
-    public void GetStandardDetails(){
-        Console.WriteLine($"{_title} - {_description}");
-        Console.WriteLine($"{_date} @ {_time}");
-        Console.WriteLine($"{_address.GetFullAddress()}");
+    public string GetTitle(){
+        return _title;
     }
 
-    public abstract void GetFullDetails();
+    public string GetDate(){
+        return _date;
+    }
+
+    public string GetStandardDetails(){
+        return $"{_title} - {_description}\n{_date} @ {_time}\n{_address.GetFullAddress()}";
+    }
+
+    public abstract string GetFullDetails();
 
 
-    public abstract void GetShortDescription();
+    public abstract string GetShortDescription();
 
-}
+};
