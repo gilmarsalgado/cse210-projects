@@ -5,17 +5,17 @@ class Program
 {
     static void Main(string[] args)
     {
-        Running running= new Running("03 Nov 2022",30,3);
+        Running dailyRun= new Running("03 Nov 2022",30,3);
 
-        Biking biking= new Biking("04 Nov 2022",60,12);
+        Biking dailyBike= new Biking("04 Nov 2022",60,12);
 
-        Swimming swimming= new Swimming("05 Nov 2022",20,10);
+        Swimming dailySwim= new Swimming("05 Nov 2022",20,10);
 
         List<Activity> activities = new List<Activity>();
 
-        activities.Add(running);
-        activities.Add(biking);
-        activities.Add(swimming);
+        activities.Add(dailyRun);
+        activities.Add(dailyBike);
+        activities.Add(dailySwim);
 
         foreach(Activity activity in activities)
         {
