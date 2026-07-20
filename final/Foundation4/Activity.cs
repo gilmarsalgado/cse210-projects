@@ -10,8 +10,7 @@ abstract class Activity{
     }
 
     public virtual string GetSummary(string sport){
-        return $"{_date} {sport} ({_minutes} min) - Distance: {GetDistance()} km, Speed: {GetSpeed()} k/h, Pace: {GetPace()} min/km";
-    }
+        return $"{_date} {sport} ({_minutes} min) - Distance: {GetDistance()} km, Speed: {GetSpeed()} km/h, Pace: {GetPace()} min/km, Calories: {GetCalories()} kcal";    }
 
     public abstract double GetDistance();
 
@@ -26,4 +25,7 @@ abstract class Activity{
     public double GetMinutes(){
     return _minutes;
 }
+    public double GetCalories(){ //Adding extra method to calculate calories burned during the activity
+        return GetDistance() * 60;
+    }
 }
