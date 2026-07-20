@@ -10,7 +10,7 @@ abstract class Activity{
     }
 
     public virtual string GetSummary(string sport){
-        return $"{_date} {sport} ({_minutes} min) - Distance {GetDistance()} km, Speed {GetSpeed()} kph, Pace:{GetPace()} min per km";
+        return $"{_date} {sport} ({_minutes} min) - Distance: {GetDistance()} km, Speed: {GetSpeed()} k/h, Pace: {GetPace()} min/km";
     }
 
     public abstract double GetDistance();

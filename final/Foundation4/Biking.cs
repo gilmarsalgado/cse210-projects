@@ -9,7 +9,7 @@ class Biking : Activity{
 
     public override double GetDistance()
     {
-        return _GetMinutes()/60 * _speed;
+        return GetMinutes()/60 * _speed;
     }
 
 
