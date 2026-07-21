@@ -4,9 +4,11 @@ using System.Runtime.CompilerServices;
 class Order{
     private List<Product> _products = new List<Product>();
     private Customer _customer;
+    private int _orderNumber; //Adding variable to track order number
 
-    public Order(Customer customer){
+    public Order(Customer customer, int orderNumber){
         _customer = customer;
+        _orderNumber = orderNumber; //Adding variable to track order number
     }
 
     public void AddProductToOrder(Product product){
@@ -22,6 +24,7 @@ class Order{
     }
 
     public void DisplayTotalPrice(){
+        Console.WriteLine($"Order Number: {_orderNumber}"); //Adding variable to track order number
         Console.WriteLine($"Total Cost: ${GetTotalPrice()}");
     }
 
